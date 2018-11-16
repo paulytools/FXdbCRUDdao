@@ -12,9 +12,9 @@ public class AuthorDAO {
   //*******************************
   //SELECT an Employee
   //*******************************
-  public static Author searchEmployee (String authId) throws SQLException, ClassNotFoundException {
+  public static Author searchEmployee(String authId) throws SQLException, ClassNotFoundException {
     //Declare a SELECT statement
-    String selectStmt = "SELECT * FROM AUTHORS WHERE AUTHORID="+authId;
+    String selectStmt = "SELECT * FROM AUTHORS WHERE AUTHORID=" + authId;
 
     //Execute SELECT statement
     try {
@@ -27,15 +27,15 @@ public class AuthorDAO {
       //Return employee object
       return author;
     } catch (SQLException e) {
-      System.out.println("While searching an author with " + authId + " id, an error occurred: " + e);
+      System.out
+          .println("While searching an author with " + authId + " id, an error occurred: " + e);
       //Return exception
       throw e;
     }
   }
 
   //Use ResultSet from DB as parameter and set Employee Object's attributes and return employee object.
-  private static Author getAuthorFromResultSet(ResultSet rs) throws SQLException
-  {
+  private static Author getAuthorFromResultSet(ResultSet rs) throws SQLException {
     Author author = null;
     if (rs.next()) {
       author = new Author();
@@ -49,7 +49,7 @@ public class AuthorDAO {
   //*******************************
   //SELECT Employees
   //*******************************
-  public static ObservableList<Author> searchAuthors () throws SQLException, ClassNotFoundException {
+  public static ObservableList<Author> searchAuthors() throws SQLException, ClassNotFoundException {
     //Declare a SELECT statement
     String selectStmt = "SELECT * FROM AUTHORS";
 
@@ -71,7 +71,8 @@ public class AuthorDAO {
   }
 
   //Select * from employees operation
-  private static ObservableList<Author> getAuthorList(ResultSet rs) throws SQLException, ClassNotFoundException {
+  private static ObservableList<Author> getAuthorList(ResultSet rs)
+      throws SQLException, ClassNotFoundException {
     //Declare a observable List which comprises of Employee objects
     ObservableList<Author> authList = FXCollections.observableArrayList();
 
@@ -91,11 +92,11 @@ public class AuthorDAO {
   //*************************************
   //DELETE an author
   //*************************************
-  public static void deleteAuthWithId (String authId) throws SQLException, ClassNotFoundException {
+  public static void deleteAuthWithId(String authId) throws SQLException, ClassNotFoundException {
     //Declare a DELETE statement
     String updateStmt =
-            "DELETE FROM AUTHORS " +
-            "WHERE AUTHORID ="+ authId;
+        "DELETE FROM AUTHORS " +
+            "WHERE AUTHORID =" + authId;
 
     //Execute UPDATE operation
     try {
@@ -109,13 +110,14 @@ public class AuthorDAO {
   //*************************************
   //INSERT an employee
   //*************************************
-  public static void insertAuth (String name, String lastname) throws SQLException, ClassNotFoundException {
+  public static void insertAuth(String name, String lastname)
+      throws SQLException, ClassNotFoundException {
     //Declare a DELETE statement
     String updateStmt =
-            "INSERT INTO AUTHORS " +
+        "INSERT INTO AUTHORS " +
             "(FIRSTNAME, LASTNAME) " +
             "VALUES " +
-            "('"+name+"', '"+lastname+"')";
+            "('" + name + "', '" + lastname + "')";
 
     //Execute DELETE operation
     try {

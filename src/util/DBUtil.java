@@ -5,7 +5,9 @@ import com.sun.rowset.CachedRowSetImpl;
 import java.sql.*;
 
 /**
- * Created by ONUR BASKIRT on 22.02.2016.
+ * Prof. Vanselow
+ * Modified code from ONUR BASKIRT.
+ * https://www.swtestacademy.com/database-operations-javafx/
  */
 public class DBUtil {
   //Declare JDBC Driver
@@ -14,13 +16,7 @@ public class DBUtil {
   //Connection
   private static Connection connection = null;
 
-  //Connection String
-  //String connStr = "jdbc:oracle:thin:Username/Password@IP:Port/SID";
-  //Username=HR, Password=HR, IP=localhost, IP=1521, SID=xe
-  //private static final String connStr = "jdbc:oracle:thin:HR/HR@localhost:1521/xe";
-
   final static String DATABASE_URL = "jdbc:derby:lib\\books";
-
 
   //Connect to DB
   public static void dbConnect() throws SQLException, ClassNotFoundException {
@@ -42,19 +38,20 @@ public class DBUtil {
       if (connection != null && !connection.isClosed()) {
         connection.close();
       }
-    } catch (Exception e){
+    } catch (Exception e) {
       throw e;
     }
   }
 
   //DB Execute Query Operation
-  public static ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException {
+  public static ResultSet dbExecuteQuery(String queryStmt)
+      throws SQLException, ClassNotFoundException {
     //Declare statement, resultSet and CachedResultSet as null
     Statement stmt = null;
     ResultSet resultSet = null;
     CachedRowSetImpl crs = null;
     try {
-      //Connect to DB (Establish Oracle Connection)
+      //Connect to DB
       dbConnect();
       System.out.println("Select statement: " + queryStmt + "\n");
 
