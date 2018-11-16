@@ -31,13 +31,13 @@ public class AuthorController {
   @FXML
   private TableColumn<Author, String> authLastNameColumn;
 
-  //Search an employee
+  //Search an author
   @FXML
   private void searchAuthor(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
     try {
-      //Get Employee information
-      Author author = AuthorDAO.searchEmployee(authIdText.getText());
-      //Populate Employee on TableView and Display on TextArea
+      //Get Author information
+      Author author = AuthorDAO.searchAuthor(authIdText.getText());
+      //Populate Author on TableView and Display on TextArea
       populateAndShowAuthor(author);
     } catch (SQLException e) {
       e.printStackTrace();
@@ -46,7 +46,7 @@ public class AuthorController {
     }
   }
 
-  //Search all employees
+  //Search all authors
   @FXML
   private void searchAuthors(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
     try {
@@ -66,11 +66,10 @@ public class AuthorController {
   private void initialize() {
         /*
         The setCellValueFactory(...) that we set on the table columns are used to determine
-        which field inside the Employee objects should be used for the particular column.
+        which field inside the Author objects should be used for the particular column.
         The arrow -> indicates that we're using a Java 8 feature called Lambdas.
         (Another option would be to use a PropertyValueFactory, but this is not type-safe
 
-        We're only using StringProperty values for our table columns in this example.
         When you want to use IntegerProperty or DoubleProperty, the setCellValueFactory(...)
         must have an additional asObject():
         */
@@ -80,7 +79,7 @@ public class AuthorController {
     authLastNameColumn.setCellValueFactory(cellData -> cellData.getValue().last_nameProperty());
   }
 
-  //Populate Employee
+  //Populate Author
   @FXML
   private void populateAuthor(Author author) throws ClassNotFoundException {
     //Declare and ObservableList for table view
@@ -91,33 +90,33 @@ public class AuthorController {
     authorTable.setItems(authData);
   }
 
-  //Set Employee information to Text Area
+  //Set Author information to Text Area
   @FXML
   private void setAuthInfoToTextArea(Author author) {
     resultArea.setText("First Name: " + author.getFirstName() + "\n" +
         "Last Name: " + author.getLast_name());
   }
 
-  //Populate Employee for TableView and Display Employee on TextArea
+  //Populate Author for TableView and Display Author on TextArea
   @FXML
   private void populateAndShowAuthor(Author author) throws ClassNotFoundException {
     if (author != null) {
       populateAuthor(author);
       setAuthInfoToTextArea(author);
     } else {
-      resultArea.setText("This employee does not exist!\n");
+      resultArea.setText("This author does not exist!\n");
     }
   }
 
-  //Populate Employees for TableView
+  //Populate Authors for TableView
   @FXML
-  private void populateAuthors(ObservableList<Author> empData) throws ClassNotFoundException {
+  private void populateAuthors(ObservableList<Author> authData) throws ClassNotFoundException {
     //Set items to the employeeTable
-    authorTable.setItems(empData);
+    authorTable.setItems(authData);
   }
 
 
-  //Insert an employee to the DB
+  //Insert an author to the DB
   @FXML
   private void insertAuthor(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
     try {
@@ -130,7 +129,7 @@ public class AuthorController {
     }
   }
 
-  //Delete an employee with a given employee Id from DB
+  //Delete an author with a given Id from DB
   @FXML
   private void deleteAuthor(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
     try {

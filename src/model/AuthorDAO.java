@@ -10,9 +10,9 @@ import java.sql.SQLException;
 public class AuthorDAO {
 
   //*******************************
-  //SELECT an Employee
+  //SELECT an Author
   //*******************************
-  public static Author searchEmployee(String authId) throws SQLException, ClassNotFoundException {
+  public static Author searchAuthor(String authId) throws SQLException, ClassNotFoundException {
     //Declare a SELECT statement
     String selectStmt = "SELECT * FROM AUTHORS WHERE AUTHORID=" + authId;
 
@@ -21,7 +21,7 @@ public class AuthorDAO {
       //Get ResultSet from dbExecuteQuery method
       ResultSet rsAuth = DBUtil.dbExecuteQuery(selectStmt);
 
-      //Send ResultSet to the getEmployeeFromResultSet method and get employee object
+      //Send ResultSet to the getAuthorFromResultSet method and get author object
       Author author = getAuthorFromResultSet(rsAuth);
 
       //Return employee object
@@ -34,7 +34,7 @@ public class AuthorDAO {
     }
   }
 
-  //Use ResultSet from DB as parameter and set Employee Object's attributes and return employee object.
+  //Use ResultSet from DB as parameter and set Author Object's attributes and return author object.
   private static Author getAuthorFromResultSet(ResultSet rs) throws SQLException {
     Author author = null;
     if (rs.next()) {
@@ -47,7 +47,7 @@ public class AuthorDAO {
   }
 
   //*******************************
-  //SELECT Employees
+  //SELECT Authors
   //*******************************
   public static ObservableList<Author> searchAuthors() throws SQLException, ClassNotFoundException {
     //Declare a SELECT statement
@@ -70,7 +70,7 @@ public class AuthorDAO {
     }
   }
 
-  //Select * from employees operation
+  //Select * from authors operation
   private static ObservableList<Author> getAuthorList(ResultSet rs)
       throws SQLException, ClassNotFoundException {
     //Declare a observable List which comprises of Employee objects
@@ -108,7 +108,7 @@ public class AuthorDAO {
   }
 
   //*************************************
-  //INSERT an employee
+  //INSERT an author
   //*************************************
   public static void insertAuth(String name, String lastname)
       throws SQLException, ClassNotFoundException {
